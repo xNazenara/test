@@ -1,7 +1,7 @@
 const display = document.querySelector('.display')
 
 const ids = [
-  '1', '2','3','4','5','6','7','8','9','0','/','*','+','-','(',')','**','$','c','arrow','='
+  '1', '2','3','4','5','6','7','8','9','0','/','*','+','-','(',')','**','$','c','arrow','=','.'
 ]
 
 window.addEventListener('click', e => {
@@ -9,17 +9,25 @@ window.addEventListener('click', e => {
       return e.target.id === item
     })
   ) {
+
     if(e.target.id === '$') {
+      try{
+          let calculated = eval(display.innerText)
 
-        let calculated = eval(display.innerText)
-
-        display.innerText = Math.round(calculated)
-
+          display.innerText = Math.round(calculated)
+        } catch (e) {
+          display.innerText = 'Ошибка'
+        }
     } else if(e.target.id === '=') {
 
+      try{
         let calculated = eval(display.innerText)
 
         display.innerText = calculated
+      } catch (e) {
+        display.innerText = "Ошибка"
+      }
+
 
      }else if(e.target.id === 'c') {
 
